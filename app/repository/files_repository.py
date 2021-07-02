@@ -170,8 +170,6 @@ class ThreadingExample:
         while True:
             # Do something
             filesRepository.time_delete_files()
-            print('Doing something imporant in the background')
-
             time.sleep(self.interval)
 
 example = ThreadingExample()
