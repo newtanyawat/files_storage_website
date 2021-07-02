@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>Delete</h1>
+
+<form action="/delete?file_id={{file_id}}" method="POST">
+	<p>Do you want to delete <strong>{{file_name}}</strong>?</p>
+      </p>
+      {% if errors %} <p style="color: red;">{{errors}}</p> {% endif %}
+      {{ form.csrf_token }}
+      {{form.submitdelete}}
+</form>
+{% endblock %}

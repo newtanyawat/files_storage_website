@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block body %}
+<body class="w3-display-middle">
+    <h1 style="text-align: center;">Register</h1>
+    <form action="/register" enctype="multipart/form-data" method="POST">
+    <p style="text-align: center;">{{form.username}}</p>
+    {% if error %} <li style="color: red;">{{error}}</li> {% endif %}
+    {% if form.username.errors %}
+    {% for i  in form.username.errors %}
+        <li style="color: red;">{{i}}</li>
+    {% endfor %}
+    {% endif %}
+    <p style="text-align: center;">{{form.password}}</p>    
+    <p style="text-align: center;">{{form.confirm}}</p>    
+    {% if form.password.errors %}
+     {% for i  in form.password.errors %}
+        <li style="color: red;">{{i}}</li>
+     {% endfor %}
+    {% endif %}
+    <p style="text-align: center;"><input type="submit" value="submit" /></p>
+    {{form.csrf_token}}
+</form>
+<form action="/">
+    <p style="text-align: center;"><input type="submit" value="Already Account : Login" /></p>
+</form>
+</body>
+{% endblock %}

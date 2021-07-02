@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block body %}
+   {% if expired %}
+   <div class="w3-display-middle">
+    <h1> Download file : {{file_name}}</h1>
+    <h1 style="color: red;">{{errors}}</h1>
+   </div>
+      {% else %}
+        <h1> Download file : {{file_name}}</h1>
+      <form action="/download?file_id={{file_id}}" method="POST" enctype="multipart/form-data">
+        {% if password %}
+        <label> Password : </label> 
+        {{form.password}}
+        {% endif %}
+        
+          {% if errors %} <p style="color: red;">{{errors}}</p> {% endif %}
+          {{ form.csrf_token }}
+         <p>{{form.submitdownload}}</p> 
+      </form>
+   {% endif %}    
+{% endblock %}

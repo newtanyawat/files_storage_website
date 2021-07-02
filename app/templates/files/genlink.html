@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="w3-display-middle">
+	<h1>Your file is encrypted and ready to send</h1>
+	<p>Your File name is : {{file_name}}</p>
+	<p>Copy the link to share your file</p>
+	<p>Link Download 	: <a href="download?file_id={{file_id}}"><span style="color:blue;">{{host}}download?file_id={{file_id}}</span></a></p>
+	<p>Link Delete 	: <a href="delete?file_id={{file_id}}"><span style="color:blue;">{{host}}delete?file_id={{file_id}}</span></a></p>
+	<p>Your Files Expire at : {{expire_date}}</p>
+	<form action="/" method="GET" >
+		<p style="text-align: center;"><input type="submit" value="Back to Upload File" /></p>
+	</form>
+</div>
+
+
+{% endblock %}
+

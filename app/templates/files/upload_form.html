@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block body %}
+<form  style="padding-left:16px" action="/upload" method="POST" enctype="multipart/form-data">
+	<h1>Upload</h3></h1> 
+	<p>{{form.uploadfiles}}</p>
+	{% if errors %} <p style="color: red;">{{errors}}</p> {% endif %}
+	<ul>
+	{% for error in form.password.errors%}
+		<li style="color:red;"> {{error}}</li> 
+	{% endfor %}
+	</ul>
+	<p>Password: {{ form.password }} (optional)</p>
+	<p>Expires in {{form.expire_duration}} or {{form.max_downloads}}  </p>
+	<p><input type="submit" value="Upload"></p>
+	{{ form.csrf_token }}
+</form>
+
+{% if table %}
+<table border = 1>
+	{% for row in rows %}
+	<tr>
+		<td>
+		<table border = 1>
+		<p>filename : {{row['file_name']}}</p>
+		<p>Expire after {{row['download_times']}} download or {{row['expire_date']}}</p>
+		<div>
+			<td> <form action="/download?file_id={{row['id']}}" method="POST" enctype="multipart/form-data"><input type="submit" value="Download" /> </form></td>
+			<td> <form action="/delete?file_id={{row['id']}}" method="POST" enctype="multipart/form-data"><input type="submit" value="Delete" /> </form></td>
+		</div>
+		</table>
+		</td>
+	</tr>
+	{% endfor %}
+ </table>
+{% endif %}
+
+{% endblock %}
