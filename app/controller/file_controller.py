@@ -76,7 +76,7 @@ class FileController:
                 if hashPassword(form.password.data)  == data_file['file_password'] : 
                     if self.filesService.checkfileExist(file_id) :
                         self.filesService.reduceDownloadTime( file_id ,data_file['download_times'])
-                        return send_from_directory(directory= os.path.join('../','files'),  filename = file_id, as_attachment=True, attachment_filename=data_file['file_name'] )
+                        return send_from_directory(os.path.join('../','files') , file_id , as_attachment=True, attachment_filename=data_file['file_name'] )
                     else :
                         expired  = True
                         errors =  'FILE WAS DELETE!'
